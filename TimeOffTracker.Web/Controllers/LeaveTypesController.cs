@@ -110,7 +110,8 @@ namespace TimeOffTracker.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(leaveTypeViewModel);
-        }
+        
+
 
 
         // POST: LeaveTypes/Delete/5
