@@ -98,7 +98,7 @@ namespace TimeOffTracker.Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await _leaveTypeRepository.Exists(leaveTypeViewModel.Id))
+                    if (!await _leaveTypeRepository.Exists(leaveTypeViewModel.Id)) 
                     {
                         return NotFound();
                     }
@@ -110,8 +110,7 @@ namespace TimeOffTracker.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(leaveTypeViewModel);
-        
-
+        }
 
 
         // POST: LeaveTypes/Delete/5
@@ -123,5 +122,7 @@ namespace TimeOffTracker.Web.Controllers
             await _leaveTypeRepository.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+ 
     }
 }
