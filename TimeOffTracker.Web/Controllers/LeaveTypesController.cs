@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TimeOffTracker.Web.Constants;
 using TimeOffTracker.Web.Data;
 using TimeOffTracker.Web.Models;
 using TimeOffTracker.Web.Repository.Interfaces;
 
 namespace TimeOffTracker.Web.Controllers
 {
+
+    [Authorize(Roles = Roles.Administrator)]
     public class LeaveTypesController : Controller
     {
         private readonly ILeaveTypeRepository _leaveTypeRepository;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TimeOffTracker.Web.Models;
 
@@ -18,6 +19,7 @@ namespace TimeOffTracker.Web.Controllers
             return View();
         }
 
+       
         public IActionResult Privacy()
         {
             return View();
