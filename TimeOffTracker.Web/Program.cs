@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using TimeOffTracker.Web.Data;
 using AutoMapper;
 using TimeOffTracker.Web.Configurations;
+using TimeOffTracker.Web.Repository.Interface;
+using TimeOffTracker.Web.Repository;
+using TimeOffTracker.Web.Repository.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +18,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+//Rejister AutoMapper
 builder.Services.AddAutoMapper(typeof(MapperConfig));
+
+//Register Repository
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
 
 
 builder.Services.AddControllersWithViews();
