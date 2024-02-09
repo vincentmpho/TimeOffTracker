@@ -15,16 +15,20 @@ using TimeOffTracker.Web.Repository.Interfaces;
 namespace TimeOffTracker.Web.Controllers
 {
 
-    [Authorize(Roles = Roles.Administrator)]
+    //[Authorize(Roles = Roles.Administrator)]
     public class LeaveTypesController : Controller
     {
         private readonly ILeaveTypeRepository _leaveTypeRepository;
         private readonly IMapper _mapper;
+        private readonly ILeaveAllocationRepository _leaveAllocationRepository;
 
-        public LeaveTypesController(ILeaveTypeRepository leaveTypeRepository, IMapper mapper)
+        public LeaveTypesController(ILeaveTypeRepository leaveTypeRepository,
+            IMapper mapper
+            , ILeaveAllocationRepository leaveAllocationRepository )
         {
             _leaveTypeRepository = leaveTypeRepository;
             _mapper = mapper;
+            _leaveAllocationRepository = leaveAllocationRepository;
         }
 
         // GET: LeaveTypes
@@ -127,6 +131,15 @@ namespace TimeOffTracker.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
- 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult>AllocateLeave(int id)
+        {
+           await _leaveAllocationRepository.LeaveAllocation(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
