@@ -13,6 +13,7 @@ namespace TimeOffTracker.Web.Configurations
             CreateMap<Employee, EmployeeAllocationViewModel>().ReverseMap();
             CreateMap<LeaveAllocation, LeaveAllocationViewModel>().ReverseMap();
             CreateMap<LeaveAllocation, leaveAllocationEditModel>().ReverseMap();
+            CreateMap<LeaveRequest, LeaveRequestsCreateViewModel>().ReverseMap();
         }
     }
 }

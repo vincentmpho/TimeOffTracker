@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeOffTracker.Web.Data;
 
@@ -11,9 +12,10 @@ using TimeOffTracker.Web.Data;
 namespace TimeOffTracker.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240209101921_AddedLeaveRequestTable")]
+    partial class AddedLeaveRequestTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,14 +54,14 @@ namespace TimeOffTracker.Web.Data.Migrations
                         new
                         {
                             Id = "2cc9e3ff-0a5c-4a16-82af-da058d968180",
-                            ConcurrencyStamp = "60eaacfe-d2b3-4154-8296-914eebdac30a",
+                            ConcurrencyStamp = "34b02d14-de8f-451e-9013-844fb5c667ce",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "571056d2-b48d-4474-95fe-ba0f4b01225e",
-                            ConcurrencyStamp = "9d89727b-8c0a-4f79-a4d2-eb92831094c9",
+                            ConcurrencyStamp = "da71d5a1-a102-4651-8c2f-491a3b8302ed",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -270,7 +272,7 @@ namespace TimeOffTracker.Web.Data.Migrations
                         {
                             Id = "bb8e99c9-b5d7-49f6-bf1e-f8a001cddb34",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "47299723-4123-4f82-993c-f9b604928ad1",
+                            ConcurrencyStamp = "8e42f993-a382-4f58-b89a-a6337bb42d81",
                             DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@localhost.com",
@@ -280,9 +282,9 @@ namespace TimeOffTracker.Web.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAhTh6j+KjWKUUTGTvWgr4StYZFDl15DFwrECiWrc08Jvy8klTJ1zCoLTwBgWH1tcg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKajWdQsCX+3S7jcGaSIIglnHh/2XE9hMCTeNgTLkApgrSHUoT8toECSUFd61SaK6A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "50d78670-4cef-4e05-84d2-a91b9f1a5493",
+                            SecurityStamp = "addc8834-0a74-461d-809a-0070a124dcd1",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -290,7 +292,7 @@ namespace TimeOffTracker.Web.Data.Migrations
                         {
                             Id = "778e5a26-f556-40be-83c9-a2c47af93338",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "33a93258-9516-402d-9ea2-e2cb5cdd3657",
+                            ConcurrencyStamp = "6168bf22-bcf3-423e-9307-0d763ac0121a",
                             DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@localhost.com",
@@ -300,9 +302,9 @@ namespace TimeOffTracker.Web.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBbt3PoQ28o64O9iGuK3p2eKQnITNneNeIJ+w6v0acxcaHwmvnEXDHBSI6mkE2kQ9A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFR8UlAZ3Q129y73YYq0ds0dtc/dqA15pxlxAGLmC+tXP+gSLf2yEtKMVpCkSkk5/Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "748271dd-8f9f-4133-8f83-9f85c5ecf8d3",
+                            SecurityStamp = "6b320034-9d90-4805-af6d-2ffcb6953676",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -375,9 +377,11 @@ namespace TimeOffTracker.Web.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RequestComments")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RequestingEmployeeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")

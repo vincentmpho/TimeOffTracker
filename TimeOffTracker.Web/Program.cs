@@ -21,6 +21,9 @@ builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireC
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+//Http Context
+builder.Services.AddHttpContextAccessor();
+
 //Rejister AutoMapper
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
@@ -31,6 +34,7 @@ builder.Services.AddTransient<IEmailSender>(x => new EmailSender("localhost", 25
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
 builder.Services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
+builder.Services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
 
 
 builder.Services.AddControllersWithViews();
